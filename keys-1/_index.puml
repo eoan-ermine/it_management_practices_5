@@ -1,29 +1,31 @@
 @startuml
-'left to right direction
+left to right direction
 
 node "Разработка мобильного приложения «ЭкоКарта»" as root
 
 package "Мобильное приложение" as mobile {
 
 package "Модуль карт" {
-    node "Интеграция Яндекс Карт" as map_sdk
-    node "Отображение маркеров" as map_markers
-    node "Отображение фильтров" as map_filters
-    node "Геолокация" as map_geolocation
-    node "Построение маршрутов" as map_routes
+    node "Реализовать интеграцию с Яндекс Картами" as map_sdk
+    node "Реализовать отображение маркеров" as map_markers
+    node "Реализовать фильтры" as map_filters
+    node "Реализовать геолокацию" as map_geolocation
+    node "Реализовать построение маршрутов" as map_routes
 }
 
-node "Отображение карточек пунктов" as points_cards
+package "Модуль карточек пунктов" {
+    node "Реализовать отображение карточек пунктов" as points_cards
+}
 
 package "Личный кабинет" {
-    node "Регистрация" as registration
-    node "Авторизация" as authorization
-    node "История сдач" as history
+    node "Реализовать регистрацию" as registration
+    node "Реализовать авторизацию" as authorization
+    node "Реализовать историю сдач" as history
 }
 
-package "Уведомления" {
-    node "Обработчик push-уведомлений" as push_client
-    node "Настройка уведомлений" as push_settings
+package "Система уведомлений" {
+    node "Реализовать обработчик push-уведомлений" as push_client
+    node "Реализовать настройку уведомлений" as push_settings
 }
 
 }
@@ -31,39 +33,42 @@ package "Уведомления" {
 root -- mobile
 
 package "Бэкенд" as server_app {
-
-node "Схема БД и миграции" as db_scheme
-node "API точек и фильтров" as api_points
-node "API профиля и истории" as api_profile
-node "Сервис push-уведомлений" as api_push
-node "Админ-панель управления" as admin_panel
-
+    package "База данных" {
+        node "Спроектировать схему БД" as db_scheme
+    }
+    package "API" {
+        node "Реализовать API точек и фильтров" as api_points
+        node "Реализовать API профиля и истории" as api_profile
+    }
+    package "Система уведомлений" {
+        node "Реализовать сервис push-уведомлений" as api_push
+    }
+    package "Админ-панель" {
+        node "Реализовать админ-панель управления" as admin_panel
+    }
 }
 
 root -- server_app
 
 package "Дизайн и UX" as design {
-    node "User Flow и Wireframes" as ux_flow
-    node "UI Kit и компоненты" as ui_kit
-    node "Иконки" as graphics
+    node "Разработать User Flow и Wireframes" as ux_flow
+    node "Разработать UI Kit и компоненты" as ui_kit
+    node "Нарисовать иконки" as graphics
 }
 
 root -- design
 
 package "Маркетинг и контент" as marketing {
-    node "Тексты карточек" as content_texts
-    node "Сценарии акций и пушей" as promo_content
-    node "Материалы для сторов" as aso
+    node "Написать тексты карточек" as content_texts
+    node "Написать сценарии акций и пушей" as promo_content
+    node "Разработать материалы для сторов" as aso
 }
 
 root -- marketing
 
-package "Инфраструктура и QA" as infrastructure {
-    node "Хостинг" as hosting
-    node "CI/CD" as ci
-    node "Unit и интеграционные тесты" as unit_tests
-    node "Приемочное тестирование" as acceptance_testing
-    node "Релиз в сторы" as release
+package "Инфраструктура и деплой" as infrastructure {
+    node "Настроить сервер" as hosting
+    node "Выполнить релиз в сторы" as release
 }
 
 root -- infrastructure

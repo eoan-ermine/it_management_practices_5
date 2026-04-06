@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+
+node "Организация онлайн конференции «Digital Future»" as root
+
+package "Подготовка к конференции" as preparation {
+    node "Провести репитицию спикеров" as speakers_repitition
+
+    node "Провести техническую репетицию" as tech_repetition
+
+    node "Опубликовать PR-тексты" as texts_publication
+
+    node "Подготовить PR-тексты" as texts_preparation
+
+    node "Организовать регистрацию" as registration
+
+    node "Разослать приглашения спикерам"
+
+    node "Выбрать спикеров"
+
+    node "Составить перечень потенциальных спикеров"
+
+    node "Выбрать платформу для проведения" as platform
+
+    node "Составить перечень платформ-кандидатов" as platfrom_list
+}
+
+root -- preparation
+
+package "Проведение конференции" as conduction {
+}
+
+root -- conduction
+
+package "Завершение конференции" as finish {
+}
+
+root -- finish
+
+@enduml

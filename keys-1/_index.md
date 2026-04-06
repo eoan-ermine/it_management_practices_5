@@ -29,4 +29,4 @@ title: "Кейс 1: Разработка мобильного приложени
 
 ## **Решение**
 
-[plant-uml:./_index.puml::3623px:629px]
+[plant-uml:./_index.puml::2118px:1999px]
