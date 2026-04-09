@@ -14,26 +14,48 @@ package "Подготовка к конференции" as preparation {
 
     node "Организовать регистрацию" as registration
 
-    node "Разослать приглашения спикерам"
+    node "Разослать приглашения спикерам" as speakers_invite
 
-    node "Выбрать спикеров"
+    node "Выбрать спикеров" as speakers
 
-    node "Составить перечень потенциальных спикеров"
+    node "Составить перечень потенциальных спикеров" as speakers_candidates
 
     node "Выбрать платформу для проведения" as platform
 
     node "Составить перечень платформ-кандидатов" as platfrom_list
 }
 
+platfrom_list -[hidden]- platform
+platform -[hidden]- speakers_candidates
+speakers_candidates -[hidden]- speakers
+
+speakers_invite -[hidden]- registration
+registration -[hidden]- texts_preparation
+texts_preparation -[hidden]- texts_publication
+
+tech_repetition -[hidden]- speakers_repitition
+
 root -- preparation
 
 package "Проведение конференции" as conduction {
+    node "Провести конференцию" as conference_conduction
+    node "Настроить трансляцию" as translation_setting
+    node "Мониторинг трансляции" as monitoring
 }
+
+translation_setting -[hidden]- conference_conduction
+conference_conduction -[hidden]- monitoring
 
 root -- conduction
 
 package "Завершение конференции" as finish {
+    node "Собрать обратную связь" as feedback_collection
+    node "Провести анализ обратной связи" as feedback_analysis
+    node "Составить отчёт для стейхолдеров" as report
 }
+
+feedback_collection -[hidden]- feedback_analysis
+feedback_analysis -[hidden]- report
 
 root -- finish
 
